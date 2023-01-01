@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const User = require('../models/user');
+const Message = require('../models/message');
 
-const findAllUsers = (req, res) => {
-    User.find()
+const findAllMessages = (req, res) => {
+    Message.find()
     .then((usr)=>{
         res.status(200).json(usr);
     })
@@ -11,9 +11,9 @@ const findAllUsers = (req, res) => {
     });
 }
 
-const findByIdUser = (req, res) => {
+const findByIdMessage = (req, res) => {
     let {id} = req.params;
-    User.findById(id)
+    Message.findById(id)
     .then((usr)=>{
         res.status(200).json(usr);
     })
@@ -22,10 +22,10 @@ const findByIdUser = (req, res) => {
     });
 }
 
-const updateOneUser = (req, res) => {
+const updateOneMessage = (req, res) => {
     let {id} = req.params;
     let { name, email, nick_name} = req.body
-    User.updateOne({_id: id}, {$set: {name, email, nick_name}})
+    Message.updateOne({_id: id}, {$set: {name, email, nick_name}})
     .then((usr)=>{
         res.status(200).json(usr);
     })
@@ -34,9 +34,9 @@ const updateOneUser = (req, res) => {
     });
 }
 
-const deleteByIdUser = (req, res) => {
+const deleteByIdMessage = (req, res) => {
     let {id} = req.params;
-    User.remove({_id: id})
+    Message.remove({_id: id})
     .then((usr)=>{
         res.status(200).json(usr);
     })
@@ -45,9 +45,9 @@ const deleteByIdUser = (req, res) => {
     });
 }
 
-const addUser = (req, res) => {
-    let user = new User(req.body);
-    user.save()
+const addMessage = (req, res) => {
+    let message = new Message(req.body);
+    message.save()
     .then((usr)=>{
         res.status(200).json(usr);
     })
@@ -57,9 +57,9 @@ const addUser = (req, res) => {
 }
 
 module.exports = {
-    findAllUsers,
-    findByIdUser,
-    updateOneUser,
-    addUser,
-    deleteByIdUser,
+    findAllMessages,
+    findByIdMessage,
+    updateOneMessage,
+    addMessage,
+    deleteByIdMessage
     }
