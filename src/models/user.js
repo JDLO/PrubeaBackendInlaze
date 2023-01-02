@@ -10,7 +10,8 @@ const UserSchema = new Schema({
 }, {
     methods:{
         checkPassword(password){
-            return bcrypt.compareSync(password, this.password);
+            console.log('Modelo password', this.password);
+            return password === this.password;
         }
     }
 });

@@ -19,8 +19,8 @@ const login = async (req, res) => {
     }
 
     // Check password
-    console.log('user', user)
-    if (user.checkPassword(password)) {
+    console.log('user', user, user.checkPassword(password))
+    if (user.checkPassword(password) != true) {
       return res.status(400).json({ message: 'Password is incorrect!' });
     }
 
